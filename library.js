@@ -260,9 +260,7 @@ function sareMainCode () {
         t.parentNode.insertBefore(s,t);
     })({
         domain : hostname,
-        ping : {'period0' : 30, 'period1' : 60},
-        execute : true,
-        sareX_ip : false
+        ping : {'period0' : 30, 'period1' : 60}
     });
 }
 

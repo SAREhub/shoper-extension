@@ -13,5 +13,25 @@ Aby dostać link do wspomnianego panelu należy wejść w sekcję **Sklep develo
 
 Po poprawny zalogowaniu przechodzimy do **Aplikacje -> Moje Aplikacje**. Po wybraniu odpowiedniej Aplikacji należy kliknąć **Aktualizuj** 
 
+### Dodatkowe informacje
+
+API do pobierania informacji o produktach, koszyku itd.
+[https://developers.shoper.pl/developers/front-api/getting-started](https://developers.shoper.pl/developers/front-api/getting-started)
+
+Zmienne kontekstowe
+[https://developers.shoper.pl/developers/snippets/contexts](https://developers.shoper.pl/developers/snippets/contexts)
+
+
+
+Objekt **Shop** zawiera przydatne informacje.
+
+Shop.pageType (typ odwiedzanej strony np: shop_product_list, shop_product)
+Shop.pageId (identyfikator produktu lub kategori)
+
+
+
+
 ## Usage
+
+
 
