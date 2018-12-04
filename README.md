@@ -24,7 +24,7 @@ Przydatne linki:
 - [API do pobierania informacji o produktach, koszyku itd.](https://developers.shoper.pl/developers/front-api/getting-started)
 - [Zmienne kontekstowe](https://developers.shoper.pl/developers/snippets/contexts)
 
-Objekt **Shop** dostępny na poziomie strony:
+Obiekt **Shop** dostępny na poziomie strony:
 
 - ```Shop.pageType``` - typ odwiedzanej strony np: shop_product_list, shop_product
 - ```Shop.pageId``` - identyfikator produktu lub kategorii
