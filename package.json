@@ -1,6 +1,12 @@
 {
+  "name": "sarehub-shoper-extension",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "gulp build"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-cli": "^2.0.1"
+    "gulp-cli": "^2.0.1",
+    "gulp-concat": "^2.6.1"
   }
 }
