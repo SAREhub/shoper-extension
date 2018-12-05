@@ -5,7 +5,7 @@ module.exports = (config) => {
         basePath: path.resolve(''),
         frameworks: ['jasmine'],
         files: [
-            // 'dist/sarehub-1.0.0.js',
+            'dist/sarehub-1.0.0.js',
             'src/*.spec.js',
         ],
         plugins: [

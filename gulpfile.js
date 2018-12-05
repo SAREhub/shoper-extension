@@ -4,7 +4,8 @@ const concat = require('gulp-concat');
 const info = JSON.parse(fs.readFileSync('package.json'));
 
 const files = [
-    './src/library.js'
+    './src/sarehub.js',
+    './src/sarewebapi.js'
 ];
 
 gulp.task('build', function() {
