@@ -5,7 +5,10 @@ const info = JSON.parse(fs.readFileSync('package.json'));
 
 const files = [
     './src/sarehub.js',
-    './src/sarewebapi.js'
+    './src/sarewebapi.js',
+    './src/context_category.js',
+    './src/context_runner.js',
+    './src/init.js'
 ];
 
 gulp.task('build', function() {

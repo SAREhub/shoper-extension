@@ -1,4 +1,3 @@
-SAREhub = typeof SAREhub === "undefined" ? {} : SAREhub;
 SAREhub.SareWebApi = (function () {
     var basicInfo = {
         'userId': '10',
