@@ -1,10 +1,6 @@
 SAREhub.SareWebApi = function (_user) {
 
-    console.log(_user);
-
     var basicInfo = {
-        'userId': '10',
-        'email': 'test@test.pl',
         'country': 'pl',
         'language': 'pl',
         'currency': 'pln',
@@ -12,8 +8,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function categorySeen(categoryId) {
         sareX_params.tag = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_category': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
@@ -24,8 +20,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function productSeen(product) {
         sareX_params.tag = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_product': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
@@ -40,8 +36,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartAddedProduct(productInfo, quantity) {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartadd': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
@@ -58,8 +54,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartDeletedProduct(productInfo, quantity) {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartdel': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
@@ -74,8 +70,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartChangedQuantity(productInfo, quantity) {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartquantity': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
@@ -88,8 +84,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartRegistration() {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartregistration': {
                 'cart_id': ''
             }
@@ -98,8 +94,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartPayment() {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartpayment': {
                 'cart_id': ''
             }
@@ -108,8 +104,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartDelivery() {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartdelivery': {
                 'cart_id': ''
             }
@@ -118,8 +114,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartSummary() {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartsummary': {
                 'cart_id': ''
             }
@@ -128,8 +124,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartConfirm() {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartconfirm': {
                 'cart_id': ''
             }
@@ -138,8 +134,8 @@ SAREhub.SareWebApi = function (_user) {
 
     function cartPurchased() {
         sareX_params.event = {
-            '_userId': basicInfo.userId,
-            '_email': basicInfo.email,
+            '_userId': _user.userId,
+            '_email': _user.email,
             '_cartpurchased': {
                 'cart_id': ''
             }

@@ -13,13 +13,11 @@
     }
 
     function getUser() {
-
-        frontAPI.getUser(function (userInfo) {
-            return {
-                userId: userInfo.user_id || false,
-                email: userInfo.email || false
-            };
-        });
+        const userInfo = frontAPI.getUser();
+        return {
+            userId: userInfo.user_id || false,
+            email: userInfo.email || false
+        };
     }
 
     function initContext() {
@@ -28,11 +26,7 @@
             return;
         }
 
-<<<<<<< HEAD
-        var runner = _sareHub.ContextRunner(_shop, _sareHub.SareWebApi(getUser()), _sareHub.Contexts);
-=======
-        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi, _sareHub.Contexts);
->>>>>>> 692ed87ac4475123c110ce7f5d9114d3f28a257d
+        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi(getUser()), _sareHub.Contexts);
         runner.dispatch();
     }
 
