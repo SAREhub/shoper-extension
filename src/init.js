@@ -12,13 +12,21 @@
         });
     }
 
+    function getUser() {
+        const userInfo = frontAPI.getUser();
+        return {
+            userId: userInfo.user_id || false,
+            email: userInfo.email || false
+        };
+    }
+
     function initContext() {
         if (!_shop.pageType || typeof sareX_params === 'undefined' || typeof sareX_core === 'undefined') {
             setTimeout(initContext, 100);
             return;
         }
 
-        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi, _sareHub.Contexts);
+        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi(getUser()), _sareHub.Contexts);
         runner.dispatch();
     }
 
