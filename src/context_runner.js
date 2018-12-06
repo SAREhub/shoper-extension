@@ -18,6 +18,10 @@ SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _contexts) {
             return _contexts.Product(_shop.pageId || 0, _frontApi, _sareWebApi);
         }
 
+        if (pageType === 'shop_basket_address') {
+            return _contexts.Delivery(_sareWebApi);
+        }
+
         return null;
     }
 
