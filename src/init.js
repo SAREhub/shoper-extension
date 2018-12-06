@@ -13,6 +13,11 @@
     }
 
     function initContext() {
+        if (!_shop.pageType) {
+            setTimeout(initContext, 100);
+            return;
+        }
+
         var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi, _sareHub.Contexts);
         runner.dispatch();
     }
