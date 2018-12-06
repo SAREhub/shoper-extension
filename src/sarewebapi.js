@@ -1,4 +1,5 @@
 SAREhub.SareWebApi = (function () {
+    var sareWebLoadEvent = 1;
     var basicInfo = {
         'userId': '10',
         'email': 'test@test.pl',
@@ -8,7 +9,7 @@ SAREhub.SareWebApi = (function () {
     };
 
     function categorySeen(categoryId) {
-        sareX_params.tag = {
+        var params = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
             '_category': {
@@ -17,10 +18,11 @@ SAREhub.SareWebApi = (function () {
                 'id': categoryId
             }
         };
+        sareX_core.execute(sareWebLoadEvent, params);
     }
 
     function productSeen(product) {
-        sareX_params.tag = {
+        var params = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
             '_product': {
@@ -33,6 +35,7 @@ SAREhub.SareWebApi = (function () {
                 'url': product.url
             }
         };
+        sareX_core.execute(sareWebLoadEvent, params);
     }
 
     function cartAddedProduct(productInfo, quantity) {

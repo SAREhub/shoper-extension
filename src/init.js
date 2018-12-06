@@ -13,7 +13,7 @@
     }
 
     function initContext() {
-        if (!_shop.pageType) {
+        if (!_shop.pageType || typeof sareX_params === 'undefined' || typeof sareX_core === 'undefined') {
             setTimeout(initContext, 100);
             return;
         }
