@@ -1,41 +1,25 @@
 describe('Context tests', () => {
-    describe('init', () => {
+    describe('dispatch', () => {
         it('should execute category context', () => {
-            var category = jasmine.createSpyObj("ContextCategory", ["init"]);
-            var contexts = {
-                category: category
-            };
+            const shop = { pageType: 'shop_product_list', pageId: 10 };
+            const sareWebApi = jasmine.createSpyObj("SareWebApi", ["categorySeen"]);
+            const category = jasmine.createSpyObj("ContextCategory", ["init"]);
+            const contexts = jasmine.createSpyObj("Contexts", ["Category"]);
+            contexts.Category.and.returnValue(category);
 
-            var runner = SAREhub.ContextRunner(contexts);
-            runner.init(runner.getContext('shop_product_list'));
+            const runner = SAREhub.ContextRunner(shop, sareWebApi, contexts);
+            runner.dispatch();
 
+            expect(contexts.Category).toHaveBeenCalledWith(10, sareWebApi);
             expect(category.init).toHaveBeenCalledTimes(1);
         });
 
         it('should return false when context does not exist', () => {
-            var runner = SAREhub.ContextRunner({category: {}});
+            const runner = SAREhub.ContextRunner({pageType: 'not_supported_type'}, {}, {});
 
-            var result = runner.init('not_exist_context');
+            const result = runner.dispatch();
 
             expect(result).toBeFalsy();
-        });
-    });
-
-    describe('getContext', () => {
-        it('should return null when not supported page type', () => {
-            var runner = SAREhub.ContextRunner({});
-
-            var result = runner.getContext('not_supported_page_type');
-
-            expect(result).toBeNull();
-        });
-
-        it('should return context name for product list', () => {
-            var runner = SAREhub.ContextRunner({});
-
-            var result = runner.getContext('shop_product_list');
-
-            expect(result).toBe('category');
         });
     });
 });

@@ -1,5 +1,4 @@
 SAREhub.SareWebApi = (function () {
-
     var basicInfo = {
         'userId': '10',
         'email': 'test@test.pl',

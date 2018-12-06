@@ -1,24 +1,23 @@
-SAREhub.ContextRunner = (function () {
-    return function (contexts) {
-        function init(context) {
-            if (!context || !contexts[context]) {
-                return false;
-            }
+SAREhub.ContextRunner = function (_shop, _sareWebApi, _contexts) {
+    function dispatch() {
+        var context = getContext(_shop.pageType || '');
 
-            contexts[context].init();
+        if (!context) {
+            return false;
         }
 
-        function getContext(pageType) {
-            if (pageType === 'shop_product_list') {
-                return 'category';
-            }
+        context.init();
+    }
 
-            return null;
+    function getContext(pageType) {
+        if (pageType === 'shop_product_list') {
+            return _contexts.Category(_shop.pageId || 0, _sareWebApi);
         }
 
-        return {
-            init: init,
-            getContext: getContext
-        };
+        return null;
+    }
+
+    return {
+        dispatch: dispatch
     };
-})();
+};

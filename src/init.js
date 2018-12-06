@@ -1,4 +1,4 @@
-(function (shop, sareHub) {
+(function (_shop, _sareHub) {
     function initSAREweb() {
         (function (p) {
             window['sareX_params'] = p;
@@ -12,11 +12,11 @@
         });
     }
 
-    function initContext(pageType) {
-        var runner = sareHub.ContextRunner(sareHub.Contexts);
-        runner.init(runner.getContext(pageType));
+    function initContext() {
+        var runner = _sareHub.ContextRunner(_shop, _sareHub.SareWebApi, _sareHub.Contexts);
+        runner.dispatch();
     }
 
     initSAREweb();
-    initContext(shop.pageType || null);
+    initContext();
 })(Shop, SAREhub);

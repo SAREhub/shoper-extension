@@ -28,8 +28,6 @@ describe('SAREweb API tests', () => {
     it('should send request when product seen', () => {
         SAREhub.SareWebApi.productSeen(product);
 
-        console.log(product);
-
         expect(sareX_params.tag).toEqual({
             '_userId': '10',
             '_email': 'test@test.pl',
