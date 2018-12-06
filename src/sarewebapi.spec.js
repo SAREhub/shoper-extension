@@ -1,6 +1,18 @@
 describe('SAREweb API tests', () => {
+
+    const product = {
+        id: 1,
+        name: "SAREhub",
+        price: {
+            gross: {
+                final_float: '59.99'
+            }
+        },
+        url: "https://sarehub.com"
+    };
+
     it('should send request when category seen', () => {
-        SAREhub.SareWebApi.categorySeen(10);
+        SAREhub.SareWebApi.categorySeen(1);
 
         expect(sareX_params.tag).toEqual({
             '_userId': '10',
@@ -8,13 +20,15 @@ describe('SAREweb API tests', () => {
             '_category': {
                 'country': 'pl',
                 'language': 'pl',
-                'id': 10
+                'id': 1
             }
         });
     });
 
     it('should send request when product seen', () => {
-        SAREhub.SareWebApi.productSeen(10);
+        SAREhub.SareWebApi.productSeen(product);
+
+        console.log(product);
 
         expect(sareX_params.tag).toEqual({
             '_userId': '10',
@@ -22,17 +36,17 @@ describe('SAREweb API tests', () => {
             '_product': {
                 'country': 'pl',
                 'language': 'pl',
-                'id': 10,
+                'currency': 'pln',
+                'id': 1,
                 'name': 'SAREhub',
                 'price': '59.99',
-                'currency': 'pln',
                 'url': 'https://sarehub.com'
             }
         });
     });
 
     it('should send request when product added to cart', () => {
-        SAREhub.SareWebApi.cartAddedProduct(10);
+        SAREhub.SareWebApi.cartAddedProduct(product, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -40,19 +54,19 @@ describe('SAREweb API tests', () => {
             '_cartadd': {
                 'country': 'pl',
                 'language': 'pl',
+                'currency': 'pln',
                 'cart_id': '',
-                'product_id': 10,
+                'product_id': 1,
                 'quantity': 1,
                 'name': 'SAREhub',
                 'price': '59.99',
-                'currency': 'pln',
                 'url': 'https://sarehub.com'
             }
         });
     });
 
     it('should send request when product deleted from cart', () => {
-        SAREhub.SareWebApi.cartDeletedProduct(10);
+        SAREhub.SareWebApi.cartDeletedProduct(product, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -60,17 +74,17 @@ describe('SAREweb API tests', () => {
             '_cartdel': {
                 'country': 'pl',
                 'language': 'pl',
+                'currency': 'pln',
                 'cart_id': '',
-                'product_id': 10,
+                'product_id': 1,
                 'quantity': 1,
-                'price': '59.99',
-                'currency': 'pln'
+                'price': '59.99'
             }
         });
     });
 
     it('should send request when changed quantity', () => {
-        SAREhub.SareWebApi.cartChangedQuantity(10);
+        SAREhub.SareWebApi.cartChangedQuantity(product, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -79,7 +93,7 @@ describe('SAREweb API tests', () => {
                 'country': 'pl',
                 'language': 'pl',
                 'cart_id': '',
-                'product_id': 10,
+                'product_id': 1,
                 'quantity': 1
             }
         });

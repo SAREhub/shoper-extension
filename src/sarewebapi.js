@@ -1,15 +1,11 @@
 SAREhub.SareWebApi = (function () {
+
     var basicInfo = {
         'userId': '10',
         'email': 'test@test.pl',
         'country': 'pl',
         'language': 'pl',
-        'product_id': 10,
-        'quantity': 1,
-        'name': 'SAREhub',
-        'price': '59.99',
         'currency': 'pln',
-        'url': 'https://sarehub.com'
     };
 
     function categorySeen(categoryId) {
@@ -24,57 +20,57 @@ SAREhub.SareWebApi = (function () {
         };
     }
 
-    function productSeen(productId) {
+    function productSeen(productInfo) {
         sareX_params.tag = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
             '_product': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
-                'id': productId,
-                'name': basicInfo.name,
-                'price': basicInfo.price,
                 'currency': basicInfo.currency,
-                'url': basicInfo.url
+                'id': productInfo.id,
+                'name': productInfo.name,
+                'price': productInfo.price.gross.final_float,
+                'url': productInfo.url
             }
         };
     }
 
-    function cartAddedProduct(productId) {
+    function cartAddedProduct(productInfo, quantity) {
         sareX_params.event = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
             '_cartadd': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
-                'cart_id': '',
-                'product_id': productId,
-                'quantity': basicInfo.quantity,
-                'name': basicInfo.name,
-                'price': basicInfo.price,
                 'currency': basicInfo.currency,
-                'url': basicInfo.url
+                'cart_id': '',
+                'product_id': productInfo.id,
+                'name': productInfo.name,
+                'price': productInfo.price.gross.final_float,
+                'url': productInfo.url,
+                'quantity': quantity,
             }
         };
     }
 
-    function cartDeletedProduct(productId) {
+    function cartDeletedProduct(productInfo, quantity) {
         sareX_params.event = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
             '_cartdel': {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
-                'cart_id': '',
-                'product_id': productId,
-                'quantity': basicInfo.quantity,
-                'price': basicInfo.price,
                 'currency': basicInfo.currency,
+                'cart_id': '',
+                'product_id': productInfo.id,
+                'price': productInfo.price.gross.final_float,
+                'quantity': quantity,
             }
         };
     }
 
-    function cartChangedQuantity(productId) {
+    function cartChangedQuantity(productInfo, quantity) {
         sareX_params.event = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
@@ -82,8 +78,8 @@ SAREhub.SareWebApi = (function () {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
                 'cart_id': '',
-                'product_id': productId,
-                'quantity': basicInfo.quantity
+                'product_id': productInfo.id,
+                'quantity': quantity
             }
         };
     }
