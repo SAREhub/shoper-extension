@@ -1,9 +1,9 @@
-SAREhub.Contexts.Product = function (_product, _sareWebApi) {
-    function init() {
-        // _sareWebApi.categorySeen(_categoryId);
-    }
+SAREhub.Contexts.Product = function (_productId, _frontApi, _sareWebApi) {
+    return function() {
+        var product = {
+            id: _productId
+        };
 
-    return {
-        init: init
-    };
+        _sareWebApi.productSeen(product);
+    }
 };

@@ -4,7 +4,7 @@ describe('Context category tests', () => {
             const sareWebApi = jasmine.createSpyObj("SareWebApi", ["categorySeen"]);
             const categoryContext = SAREhub.Contexts.Category(10, sareWebApi);
 
-            categoryContext.init();
+            categoryContext();
 
             expect(sareWebApi.categorySeen).toHaveBeenCalledTimes(1);
             expect(sareWebApi.categorySeen).toHaveBeenCalledWith(10);

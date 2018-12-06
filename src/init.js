@@ -1,4 +1,4 @@
-(function (_shop, _sareHub) {
+(function (_shop, _frontApi, _sareHub) {
     function initSAREweb() {
         (function (p) {
             window['sareX_params'] = p;
@@ -13,10 +13,10 @@
     }
 
     function initContext() {
-        var runner = _sareHub.ContextRunner(_shop, _sareHub.SareWebApi, _sareHub.Contexts);
+        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi, _sareHub.Contexts);
         runner.dispatch();
     }
 
     initSAREweb();
     initContext();
-})(Shop, SAREhub);
+})(Shop, frontAPI, SAREhub);
