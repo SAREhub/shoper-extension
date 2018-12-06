@@ -1,15 +1,14 @@
 describe('Context product tests', () => {
     describe('init', () => {
         it('should call request to SAREweb API with product details', () => {
-            const product = { id: 10 };
             const frontApi = jasmine.createSpyObj("FrontApi", ["getProduct"]);
             const sareWebApi = jasmine.createSpyObj("SareWebApi", ["productSeen"]);
-            const productCotext = SAREhub.Contexts.Product(10, frontApi, sareWebApi);
+            const productContext = SAREhub.Contexts.Product(10, frontApi, sareWebApi);
 
-            productCotext();
+            productContext();
 
-            expect(sareWebApi.productSeen).toHaveBeenCalledTimes(1);
-            expect(sareWebApi.productSeen).toHaveBeenCalledWith(product);
+            expect(frontApi.getProduct).toHaveBeenCalledTimes(1);
+            expect(frontApi.getProduct).toHaveBeenCalledWith(sareWebApi.productSeen, { id: 10 });
         });
     });
 });

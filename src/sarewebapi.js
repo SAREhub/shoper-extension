@@ -19,7 +19,7 @@ SAREhub.SareWebApi = (function () {
         };
     }
 
-    function productSeen(productInfo) {
+    function productSeen(product) {
         sareX_params.tag = {
             '_userId': basicInfo.userId,
             '_email': basicInfo.email,
@@ -27,10 +27,10 @@ SAREhub.SareWebApi = (function () {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
                 'currency': basicInfo.currency,
-                'id': productInfo.id,
-                'name': productInfo.name,
-                'price': productInfo.price.gross.final_float,
-                'url': productInfo.url
+                'id': product.id,
+                'name': product.name,
+                'price': product.price.gross.final_float,
+                'url': product.url
             }
         };
     }
