@@ -1,5 +1,10 @@
 describe('SAREweb API tests', () => {
 
+    const user = {
+        userId: '10',
+        email: 'test@test.pl'
+    };
+
     const product = {
         id: 1,
         name: "SAREhub",
@@ -12,7 +17,7 @@ describe('SAREweb API tests', () => {
     };
 
     it('should send request when category seen', () => {
-        SAREhub.SareWebApi.categorySeen(1);
+        SAREhub.SareWebApi(user).categorySeen(1);
 
         expect(sareX_params.tag).toEqual({
             '_userId': '10',
@@ -26,7 +31,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product seen', () => {
-        SAREhub.SareWebApi.productSeen(product);
+        SAREhub.SareWebApi(user).productSeen(product);
 
         expect(sareX_params.tag).toEqual({
             '_userId': '10',
@@ -44,7 +49,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product added to cart', () => {
-        SAREhub.SareWebApi.cartAddedProduct(product, 1);
+        SAREhub.SareWebApi(user).cartAddedProduct(product, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -64,7 +69,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product deleted from cart', () => {
-        SAREhub.SareWebApi.cartDeletedProduct(product, 1);
+        SAREhub.SareWebApi(user).cartDeletedProduct(product, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -82,7 +87,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when changed quantity', () => {
-        SAREhub.SareWebApi.cartChangedQuantity(product, 1);
+        SAREhub.SareWebApi(user).cartChangedQuantity(product, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -98,7 +103,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout registration', () => {
-        SAREhub.SareWebApi.cartRegistration();
+        SAREhub.SareWebApi(user).cartRegistration();
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -110,7 +115,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout payment', () => {
-        SAREhub.SareWebApi.cartPayment();
+        SAREhub.SareWebApi(user).cartPayment();
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -122,7 +127,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout delivery', () => {
-        SAREhub.SareWebApi.cartDelivery();
+        SAREhub.SareWebApi(user).cartDelivery();
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -134,7 +139,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout summary', () => {
-        SAREhub.SareWebApi.cartSummary();
+        SAREhub.SareWebApi(user).cartSummary();
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -146,7 +151,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout confirm', () => {
-        SAREhub.SareWebApi.cartConfirm();
+        SAREhub.SareWebApi(user).cartConfirm();
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
@@ -158,7 +163,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout purchase', () => {
-        SAREhub.SareWebApi.cartPurchased();
+        SAREhub.SareWebApi(user).cartPurchased();
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',
