@@ -12,6 +12,24 @@
         });
     }
 
+    function getUser() {
+
+        frontAPI.getUser(function (userInfo) {
+            return {
+                userId: userInfo.user_id || false,
+                email: userInfo.email || false
+            };
+        });
+
+
+
+        // const userInfo = frontAPI.getUser();
+        // return {
+        //     userId: userInfo.user_id || false,
+        //     email: userInfo.email || false
+        // };
+    }
+
     function initContext() {
 
         if (!_shop.pageType) {
@@ -19,7 +37,7 @@
             return;
         }
 
-        var runner = _sareHub.ContextRunner(_shop, _sareHub.SareWebApi, _sareHub.Contexts);
+        var runner = _sareHub.ContextRunner(_shop, _sareHub.SareWebApi(getUser()), _sareHub.Contexts);
         runner.dispatch();
     }
 

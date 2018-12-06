@@ -1,4 +1,7 @@
-SAREhub.SareWebApi = (function () {
+SAREhub.SareWebApi = function (_user) {
+
+    console.log(_user);
+
     var basicInfo = {
         'userId': '10',
         'email': 'test@test.pl',
@@ -156,4 +159,4 @@ SAREhub.SareWebApi = (function () {
         cartConfirm: cartConfirm,
         cartPurchased: cartPurchased
     };
-})();
+};
