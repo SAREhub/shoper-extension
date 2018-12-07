@@ -14,9 +14,13 @@
 
     function getUser() {
         const userInfo = frontAPI.getUser();
+        const langInfo = frontAPI.getLang();
         return {
             userId: userInfo.user_id || false,
-            email: userInfo.email || false
+            email: userInfo.email || false,
+            currency: _shop.values.currency || 'pln',
+            language: langInfo.split("_")[0] || 'pl',
+            country: langInfo.split("_")[1] || 'PL'
         };
     }
 
