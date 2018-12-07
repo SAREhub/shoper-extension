@@ -1,7 +1,8 @@
 describe('Context tests', () => {
-    const frontApi = jasmine.createSpyObj('FrontApi', ['getProduct', 'productSeen']);
-    const sareWebApi = jasmine.createSpyObj('SareWebApi', ['categorySeen']);
-    const contexts = jasmine.createSpyObj('Contexts', ['Category', 'Product']);
+    const frontApi = jasmine.createSpyObj('FrontApi', ['getProduct', 'getUser']);
+    const sareWebApi = jasmine.createSpyObj('FrontApi', ['productSeen', 'categorySeen']);
+    const contexts = jasmine.createSpyObj('Contexts', ['Category', 'Product', 'Purchased', 'Confirm',
+        'DeliveryPayment', 'Registration']);
 
     it('should execute category context', () => {
         const shop = {pageType: 'shop_product_list', pageId: 10};
@@ -23,9 +24,6 @@ describe('Context tests', () => {
 
     it('should execute registration context', () => {
         const shop = {pageType: 'shop_basket_address'};
-        const frontApi = {};
-        const sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartRegistration']);
-        const contexts = jasmine.createSpyObj('Contexts', ['Registration']);
 
         const runner = SAREhub.ContextRunner(shop, frontApi, sareWebApi, contexts);
         runner.dispatch();
@@ -35,9 +33,6 @@ describe('Context tests', () => {
 
     it('should execute delivery and payment context', () => {
         const shop = {pageType: 'shop_basket_shipping_payment'};
-        const frontApi = {};
-        const sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartDeliveryPayment']);
-        const contexts = jasmine.createSpyObj('Contexts', ['DeliveryPayment']);
 
         const runner = SAREhub.ContextRunner(shop, frontApi, sareWebApi, contexts);
         runner.dispatch();
@@ -47,9 +42,6 @@ describe('Context tests', () => {
 
     it('should execute confirm context', () => {
         const shop = {pageType: 'shop_basket_step3'};
-        const frontApi = {};
-        const sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartConfirm']);
-        const contexts = jasmine.createSpyObj('Contexts', ['Confirm']);
 
         const runner = SAREhub.ContextRunner(shop, frontApi, sareWebApi, contexts);
         runner.dispatch();
@@ -59,9 +51,6 @@ describe('Context tests', () => {
 
     it('should execute purchased context', () => {
         const shop = {pageType: 'shop_basket_done'};
-        const frontApi = {};
-        const sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartPurchased']);
-        const contexts = jasmine.createSpyObj('Contexts', ['Purchased']);
 
         const runner = SAREhub.ContextRunner(shop, frontApi, sareWebApi, contexts);
         runner.dispatch();
