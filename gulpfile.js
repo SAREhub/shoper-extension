@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 
 const files = [
     './src/sarehub.js',
@@ -14,5 +15,6 @@ const files = [
 gulp.task('build', function() {
     return gulp.src(files)
         .pipe(concat('sarehub.js'))
+        //.pipe(uglify())
         .pipe(gulp.dest('./dist/'));
 });
