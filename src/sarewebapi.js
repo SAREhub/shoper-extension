@@ -86,23 +86,27 @@ SAREhub.SareWebApi = function (_user) {
     }
 
     function cartRegistration() {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartregistration': {
                 'cart_id': ''
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartPayment() {
-        sareX_params.event = {
+         var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartpayment': {
                 'cart_id': ''
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartDelivery() {
@@ -118,33 +122,39 @@ SAREhub.SareWebApi = function (_user) {
     }
 
     function cartSummary() {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartsummary': {
                 'cart_id': ''
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartConfirm() {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartconfirm': {
                 'cart_id': ''
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartPurchased() {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartpurchased': {
                 'cart_id': ''
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     return {
