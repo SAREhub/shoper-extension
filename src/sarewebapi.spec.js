@@ -6,17 +6,17 @@ describe('SAREweb API tests', () => {
 
     const product = {
         id: 1,
-        name: "SAREhub",
+        name: 'SAREhub',
         price: {
             gross: {
                 final_float: '59.99'
             }
         },
-        url: "https://sarehub.com"
+        url: 'https://sarehub.com'
     };
 
     it('should send request when category seen', () => {
-        sareX_core = jasmine.createSpyObj("SareXCore", ["execute"]);
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
 
         SAREhub.SareWebApi(user).categorySeen(1);
 
@@ -32,7 +32,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product seen', () => {
-        sareX_core = jasmine.createSpyObj("SareXCore", ["execute"]);
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
 
         SAREhub.SareWebApi(user).productSeen(product);
 
@@ -130,7 +130,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout delivery', () => {
-        sareX_core = jasmine.createSpyObj("SareXCore", ["execute"]);
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
 
         SAREhub.SareWebApi(user).cartDelivery();
 
