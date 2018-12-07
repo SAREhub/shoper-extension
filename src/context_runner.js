@@ -19,7 +19,19 @@ SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _contexts) {
         }
 
         if (pageType === 'shop_basket_address') {
-            return _contexts.Delivery(_sareWebApi);
+            return _contexts.Registration(_sareWebApi);
+        }
+
+        if (pageType === 'shop_basket_shipping_payment') {
+            return _contexts.DeliveryPayment(_sareWebApi);
+        }
+
+        if (pageType === 'shop_basket_step3') {
+            return _contexts.Confirm(_sareWebApi);
+        }
+
+        if (pageType === 'shop_basket_done') {
+            return _contexts.Purchased(_sareWebApi);
         }
 
         return null;
