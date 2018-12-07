@@ -7,7 +7,10 @@ const files = [
     './src/sarewebapi.js',
     './src/context_category.js',
     './src/context_product.js',
-    './src/context_delivery.js',
+    './src/context_confirm.js',
+    './src/context_delivery_payment.js',
+    './src/context_purchased.js',
+    './src/context_registration.js',
     './src/context_runner.js',
     './src/init.js'
 ];
