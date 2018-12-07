@@ -1,5 +1,4 @@
 describe('SAREweb API tests', () => {
-
     const user = {
         userId: '10',
         email: 'test@test.pl'
@@ -17,9 +16,11 @@ describe('SAREweb API tests', () => {
     };
 
     it('should send request when category seen', () => {
+        sareX_core = jasmine.createSpyObj("SareXCore", ["execute"]);
+
         SAREhub.SareWebApi(user).categorySeen(1);
 
-        expect(sareX_params.tag).toEqual({
+        expect(sareX_core.execute).toHaveBeenCalledWith(1, {
             '_userId': '10',
             '_email': 'test@test.pl',
             '_category': {
@@ -31,9 +32,11 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product seen', () => {
+        sareX_core = jasmine.createSpyObj("SareXCore", ["execute"]);
+
         SAREhub.SareWebApi(user).productSeen(product);
 
-        expect(sareX_params.tag).toEqual({
+        expect(sareX_core.execute).toHaveBeenCalledWith(1, {
             '_userId': '10',
             '_email': 'test@test.pl',
             '_product': {
@@ -127,9 +130,11 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when checkout delivery', () => {
+        sareX_core = jasmine.createSpyObj("SareXCore", ["execute"]);
+
         SAREhub.SareWebApi(user).cartDelivery();
 
-        expect(sareX_params.event).toEqual({
+        expect(sareX_core.execute).toHaveBeenCalledWith(10, {
             '_userId': '10',
             '_email': 'test@test.pl',
             '_cartdelivery': {
