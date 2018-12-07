@@ -1,5 +1,6 @@
 SAREhub.SareWebApi = function (_user) {
     var sareWebLoadEvent = 1;
+    var sareWebCartEvent = 10;
     var basicInfo = {
         'country': 'pl',
         'language': 'pl',
@@ -105,13 +106,15 @@ SAREhub.SareWebApi = function (_user) {
     }
 
     function cartDelivery() {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartdelivery': {
                 'cart_id': ''
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartSummary() {
