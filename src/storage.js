@@ -14,12 +14,17 @@ SAREhub.Storage = function () {
         try {
             storage.setItem(key, JSON.stringify(data) || []);
         } catch {
-            storage.clear();
+            clear();
         }
+    }
+
+    function clearAll() {
+        storage.clear();
     }
 
     return {
         getItem: getItem,
-        saveItem: saveItem
+        saveItem: saveItem,
+        clearAll: clearAll
     }
 };
