@@ -13,8 +13,8 @@
     }
 
     function getUser() {
-        var userInfo = _frontAPI.getUser();
-        var langInfo = _frontAPI.getLang();
+        var userInfo = _frontApi.getUser();
+        var langInfo = _frontApi.getLang();
 
         return {
             userId: userInfo.user_id || false,
