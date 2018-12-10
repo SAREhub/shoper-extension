@@ -1,19 +1,14 @@
 SAREhub.SareWebApi = function (_user) {
     var sareWebLoadEvent = 1;
     var sareWebCartEvent = 10;
-    var basicInfo = {
-        'country': 'pl',
-        'language': 'pl',
-        'currency': 'pln',
-    };
 
     function categorySeen(categoryId) {
         var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_category': {
-                'country': basicInfo.country,
-                'language': basicInfo.language,
+                'country': _user.country,
+                'language': _user.language,
                 'id': categoryId
             }
         };
@@ -25,9 +20,9 @@ SAREhub.SareWebApi = function (_user) {
             '_userId': _user.userId,
             '_email': _user.email,
             '_product': {
-                'country': basicInfo.country,
-                'language': basicInfo.language,
-                'currency': basicInfo.currency,
+                'country': _user.country,
+                'language': _user.language,
+                'currency': _user.currency,
                 'id': product.id,
                 'name': product.name,
                 'price': product.price.gross.final_float,
@@ -42,9 +37,9 @@ SAREhub.SareWebApi = function (_user) {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartadd': {
-                'country': basicInfo.country,
-                'language': basicInfo.language,
-                'currency': basicInfo.currency,
+                'country': _user.country,
+                'language': _user.language,
+                'currency': _user.currency,
                 'cart_id': '',
                 'product_id': productInfo.id,
                 'name': productInfo.name,
@@ -60,9 +55,9 @@ SAREhub.SareWebApi = function (_user) {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartdel': {
-                'country': basicInfo.country,
-                'language': basicInfo.language,
-                'currency': basicInfo.currency,
+                'country': _user.country,
+                'language': _user.language,
+                'currency': _user.currency,
                 'cart_id': '',
                 'product_id': productInfo.id,
                 'price': productInfo.price.gross.final_float,
@@ -76,8 +71,8 @@ SAREhub.SareWebApi = function (_user) {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartquantity': {
-                'country': basicInfo.country,
-                'language': basicInfo.language,
+                'country': _user.country,
+                'language': _user.language,
                 'cart_id': '',
                 'product_id': productId,
                 'quantity': quantity
