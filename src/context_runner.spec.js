@@ -57,7 +57,7 @@ describe('Context tests', () => {
         const runner = SAREhub.ContextRunner(shop, frontApi, sareWebApi, storage, contexts);
         runner.dispatch();
 
-        expect(contexts.Purchased).toHaveBeenCalledWith(sareWebApi);
+        expect(contexts.Purchased).toHaveBeenCalledWith(sareWebApi, storage);
     });
 
     it('should return false when context does not exist', () => {
