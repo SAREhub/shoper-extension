@@ -1,61 +1,69 @@
 describe('Context cart tests', () => {
-    const frontApi = jasmine.createSpyObj('FrontApi', ['getBasketInfo']);
-    const sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartAddedProduct', 'cartDeletedProduct', 'cartChangedQuantity']);
-    frontApi.getBasketInfo.and.callFake(function(callback) {
-        const currentBasketState = { products: [
-            { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 }
-        ]};
-        callback(currentBasketState);
+    var frontApi, sareWebApi, storage = null;
+
+    beforeEach(() => {
+        frontApi = jasmine.createSpyObj('FrontApi', ['getBasketInfo']);
+        sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartAddedProduct', 'cartDeletedProduct', 'cartChangedQuantity']);
+        storage = jasmine.createSpyObj('Storage', ['saveItem', 'getItem']);
+
+        frontApi.getBasketInfo.and.callFake(function(callback) {
+            const currentBasketState = { products: [
+                    { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 }
+                ]};
+            callback(currentBasketState);
+        });
     });
 
-    function setCartState(state) {
-        window.sessionStorage.setItem('sarehub_cart', JSON.stringify(state || []));
-    }
-
     it('added new product to cart', () => {
-        setCartState([]);
+        storage.getItem.and.returnValue([]);
 
-        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi);
+        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
         cartContext();
 
-        const expectedProduct = {
-            id: 10,
-            name: 'test-product-1',
-            price: { gross: { final_float: 10.10 } },
-            url: null
-        };
-
         expect(sareWebApi.cartAddedProduct).toHaveBeenCalledTimes(1);
-        expect(sareWebApi.cartAddedProduct).toHaveBeenCalledWith(expectedProduct, 1);
+        expect(sareWebApi.cartAddedProduct).toHaveBeenCalledWith({ id: 10, name: 'test-product-1',
+            price: { gross: { final_float: 10.10 } }, url: null}, 1);
     });
 
     it('removed product from cart', () => {
-        setCartState([
+        storage.getItem.and.returnValue([
             { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 },
             { id: 18, stock_id: 30, product_id: 20, name: 'test-product-2', price_float: 20.20, quantity: 2 }
         ]);
 
-        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi);
+        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
         cartContext();
 
-        const expectedProduct = {
-            id: 'stock_30',
-            price: { gross: { final_float: 20.20 } }
-        };
-
         expect(sareWebApi.cartDeletedProduct).toHaveBeenCalledTimes(1);
-        expect(sareWebApi.cartDeletedProduct).toHaveBeenCalledWith(expectedProduct, 2);
+        expect(sareWebApi.cartDeletedProduct).toHaveBeenCalledWith({ id: 'stock_30', price: { gross: { final_float: 20.20 } } }, 2);
     });
 
     it('changed quantity of product', () => {
-        setCartState([
+        storage.getItem.and.returnValue([
             { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 5 }
         ]);
 
-        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi);
+        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
         cartContext();
 
         expect(sareWebApi.cartChangedQuantity).toHaveBeenCalledTimes(1);
         expect(sareWebApi.cartChangedQuantity).toHaveBeenCalledWith(10, 1);
+    });
+
+    it('init', () => {
+        storage.getItem.and.returnValue([]);
+
+        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
+        cartContext();
+
+        expect(storage.getItem).toHaveBeenCalledTimes(1);
+        expect(storage.getItem).toHaveBeenCalledWith('sarehub_cart');
+
+        expect(frontApi.getBasketInfo).toHaveBeenCalledTimes(1);
+
+        expect(storage.saveItem).toHaveBeenCalledTimes(1);
+        expect(storage.saveItem).toHaveBeenCalledWith('sarehub_cart', [
+            { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 }
+        ]);
     });
 });

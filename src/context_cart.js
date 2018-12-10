@@ -1,16 +1,5 @@
-SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi) {
-    var cartItems = [];
-
-    // TODO global vars
-    function retriveCart() {
-        var cartJson = window.sessionStorage.getItem('sarehub_cart');
-        cartItems = JSON.parse(cartJson) || [];
-    }
-
-    function saveCart(cart) {
-        window.sessionStorage.setItem('sarehub_cart', JSON.stringify(cart));
-        retriveCart();
-    }
+SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi, _storage) {
+    var storageKey = 'sarehub_cart';
 
     function itemId(item) {
         return item.stock_id !== item.product_id ? 'stock_' + item.stock_id : item.product_id;
@@ -58,10 +47,10 @@ SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi) {
 
     // TODO interval?
     return function init() {
-        retriveCart();
-        _frontApi.getBasketInfo(function (basket) {
-            compare(basket, cartItems);
-            saveCart(basket);
+        var savedCart = _storage.getItem(storageKey);
+        _frontApi.getBasketInfo(function (currentCart) {
+            compare(currentCart, savedCart);
+            _storage.saveItem(storageKey, currentCart.products);
         });
     };
 };

@@ -31,7 +31,7 @@
             return;
         }
 
-        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi(getUser()), _sareHub.Contexts);
+        var runner = _sareHub.ContextRunner(_shop, _frontApi, _sareHub.SareWebApi(getUser()), _sareHub.Storage(), _sareHub.Contexts);
         runner.dispatch();
     }
 
