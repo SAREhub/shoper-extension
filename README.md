@@ -2,11 +2,19 @@
 
 ## Obsługiwane zdarzenia
 
-@TODO
+- przeglądanie kategorii
+- przeglądanie karty produktu
+- zdarzenia koszykowe (dodano produkt do koszyka, usunięto produkt, zmieniono ilość)
+- proces zamówienia - podanie danych do wysyłki
+- proces zamówienia - wybór dostawy i płatności
+- proces zamówienia - potwierdzenie chęci złożenia zamówienia przez klienta
+- proces zamówienia - potwierdzenie, że złożono zamówienie
 
 ## Wykorzystanie w sklepie internetowym
 
-@TODO
+- [Wymagana integracja z Google Marchant](https://www.shoper.pl/help/artykul/integracja-z-google-merchant-center/)
+- [Wymagania względem produktów aby pojawiły się w Google Marchant](https://www.shoper.pl/help/artykul/plik-produktowy-google-wymagania-specyfikacja-google-merchant-center/)
+- [Mapowanie wariantów aby prawidłowo zostały uwzględnione w SAREhub](https://www.shoper.pl/help/artykul/mapowanie-wariantow-dla-google-merchant-center/)
 
 ## Development
 
