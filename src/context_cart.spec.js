@@ -3,7 +3,7 @@ describe('Context cart tests', () => {
     const sareWebApi = jasmine.createSpyObj('SareWebApi', ['cartAddedProduct', 'cartDeletedProduct', 'cartChangedQuantity']);
     frontApi.getBasketInfo.and.callFake(function(callback) {
         const currentBasketState = { products: [
-            { id: 17, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 }
+            { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 }
         ]};
         callback(currentBasketState);
     });
@@ -31,15 +31,15 @@ describe('Context cart tests', () => {
 
     it('removed product from cart', () => {
         setCartState([
-            { id: 17, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 },
-            { id: 18, product_id: 20, name: 'test-product-2', price_float: 20.20, quantity: 2 }
+            { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 },
+            { id: 18, stock_id: 30, product_id: 20, name: 'test-product-2', price_float: 20.20, quantity: 2 }
         ]);
 
         const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi);
         cartContext();
 
         const expectedProduct = {
-            id: 20,
+            id: 'stock_30',
             price: { gross: { final_float: 20.20 } }
         };
 
@@ -49,7 +49,7 @@ describe('Context cart tests', () => {
 
     it('changed quantity of product', () => {
         setCartState([
-            { id: 17, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 5 }
+            { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 5 }
         ]);
 
         const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi);

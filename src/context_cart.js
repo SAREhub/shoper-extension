@@ -12,9 +12,13 @@ SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi) {
         retriveCart();
     }
 
+    function itemId(item) {
+        return item.stock_id !== item.product_id ? 'stock_' + item.stock_id : item.product_id;
+    }
+
     function createSareWebProductFromCartItem(item) {
         return {
-            id: item.product_id,
+            id: itemId(item),
             name: item.name,
             price: { gross: { final_float: item.price_float } },
             url: null
@@ -23,7 +27,7 @@ SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi) {
 
     function createSimpleSareWebProductFromCartItem(item) {
         return {
-            id: item.product_id,
+            id: itemId(item),
             price: { gross: { final_float: item.price_float } }
         };
     }
@@ -39,7 +43,7 @@ SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi) {
             }
 
             if (oldCartItem.quantity !== item.quantity) {
-                _sareWebApi.cartChangedQuantity(item.product_id, item.quantity);
+                _sareWebApi.cartChangedQuantity(itemId(item), item.quantity);
             }
         }
 
