@@ -1,7 +1,10 @@
 describe('SAREweb API tests', () => {
     const user = {
         userId: '10',
-        email: 'test@test.pl'
+        email: 'test@test.pl',
+        currency: 'pln',
+        language: 'pl',
+        country: 'pl'
     };
 
     const product = {
@@ -52,9 +55,11 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product added to cart', () => {
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
+
         SAREhub.SareWebApi(user).cartAddedProduct(product, 1);
 
-        expect(sareX_params.event).toEqual({
+        expect(sareX_core.execute).toHaveBeenCalledWith(10, {
             '_userId': '10',
             '_email': 'test@test.pl',
             '_cartadd': {
@@ -72,9 +77,11 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when product deleted from cart', () => {
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
+
         SAREhub.SareWebApi(user).cartDeletedProduct(product, 1);
 
-        expect(sareX_params.event).toEqual({
+        expect(sareX_core.execute).toHaveBeenCalledWith(10, {
             '_userId': '10',
             '_email': 'test@test.pl',
             '_cartdel': {
@@ -83,16 +90,18 @@ describe('SAREweb API tests', () => {
                 'currency': 'pln',
                 'cart_id': '',
                 'product_id': 1,
-                'quantity': 1,
-                'price': '59.99'
+                'price': '59.99',
+                'quantity': 1
             }
         });
     });
 
     it('should send request when changed quantity', () => {
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
+
         SAREhub.SareWebApi(user).cartChangedQuantity(1, 1);
 
-        expect(sareX_params.event).toEqual({
+        expect(sareX_core.execute).toHaveBeenCalledWith(10, {
             '_userId': '10',
             '_email': 'test@test.pl',
             '_cartquantity': {
