@@ -33,7 +33,7 @@ SAREhub.SareWebApi = function (_user) {
     }
 
     function cartAddedProduct(productInfo, quantity) {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartadd': {
@@ -48,10 +48,12 @@ SAREhub.SareWebApi = function (_user) {
                 'quantity': quantity,
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartDeletedProduct(productInfo, quantity) {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartdel': {
@@ -64,10 +66,12 @@ SAREhub.SareWebApi = function (_user) {
                 'quantity': quantity,
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartChangedQuantity(productId, quantity) {
-        sareX_params.event = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartquantity': {
@@ -78,6 +82,8 @@ SAREhub.SareWebApi = function (_user) {
                 'quantity': quantity
             }
         };
+
+        sareX_core.execute(sareWebCartEvent, params);
     }
 
     function cartRegistration() {
@@ -93,7 +99,7 @@ SAREhub.SareWebApi = function (_user) {
     }
 
     function cartPayment() {
-         var params = {
+        var params = {
             '_userId': _user.userId,
             '_email': _user.email,
             '_cartpayment': {
