@@ -5,6 +5,7 @@ const uglify = require('gulp-uglify');
 const files = [
     './src/sarehub.js',
     './src/sarewebapi.js',
+    './src/context_cart.js',
     './src/context_category.js',
     './src/context_product.js',
     './src/context_confirm.js',

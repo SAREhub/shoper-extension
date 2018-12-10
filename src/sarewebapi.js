@@ -71,7 +71,7 @@ SAREhub.SareWebApi = function (_user) {
         };
     }
 
-    function cartChangedQuantity(productInfo, quantity) {
+    function cartChangedQuantity(productId, quantity) {
         sareX_params.event = {
             '_userId': _user.userId,
             '_email': _user.email,
@@ -79,7 +79,7 @@ SAREhub.SareWebApi = function (_user) {
                 'country': basicInfo.country,
                 'language': basicInfo.language,
                 'cart_id': '',
-                'product_id': productInfo.id,
+                'product_id': productId,
                 'quantity': quantity
             }
         };

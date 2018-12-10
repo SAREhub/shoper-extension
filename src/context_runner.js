@@ -10,6 +10,10 @@ SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _contexts) {
     }
 
     function getContext(pageType) {
+        if (pageType !== 'shop_infopage') {
+            _contexts.Cart(_frontApi, _sareWebApi);
+        }
+
         if (pageType === 'shop_product_list') {
             return _contexts.Category(_shop.pageId || 0, _sareWebApi);
         }

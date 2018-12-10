@@ -13,7 +13,7 @@
     }
 
     function getUser() {
-        const userInfo = frontAPI.getUser();
+        var userInfo = _frontAPI.getUser();
         return {
             userId: userInfo.user_id || false,
             email: userInfo.email || false

@@ -90,7 +90,7 @@ describe('SAREweb API tests', () => {
     });
 
     it('should send request when changed quantity', () => {
-        SAREhub.SareWebApi(user).cartChangedQuantity(product, 1);
+        SAREhub.SareWebApi(user).cartChangedQuantity(1, 1);
 
         expect(sareX_params.event).toEqual({
             '_userId': '10',

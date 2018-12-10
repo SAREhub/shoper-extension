@@ -2,7 +2,7 @@ describe('Context tests', () => {
     const frontApi = jasmine.createSpyObj('FrontApi', ['getProduct', 'getUser']);
     const sareWebApi = jasmine.createSpyObj('FrontApi', ['productSeen', 'categorySeen']);
     const contexts = jasmine.createSpyObj('Contexts', ['Category', 'Product', 'Purchased', 'Confirm',
-        'DeliveryPayment', 'Registration']);
+        'DeliveryPayment', 'Registration', 'Cart']);
 
     it('should execute category context', () => {
         const shop = {pageType: 'shop_product_list', pageId: 10};
@@ -59,7 +59,7 @@ describe('Context tests', () => {
     });
 
     it('should return false when context does not exist', () => {
-        const runner = SAREhub.ContextRunner({pageType: 'not_supported_type'}, {}, {});
+        const runner = SAREhub.ContextRunner({pageType: 'not_supported_type'}, {}, {}, contexts);
 
         const result = runner.dispatch();
 
