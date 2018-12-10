@@ -2,7 +2,8 @@ describe('Context purchased tests', () => {
     describe('init', () => {
         it('should call request to SAREweb API when checkout purchased', () => {
             const sareWebApi = jasmine.createSpyObj("SareWebApi", ["cartPurchased"]);
-            const purchasedContext = SAREhub.Contexts.Purchased(sareWebApi);
+            const storage = jasmine.createSpyObj("Storage", ["clearAll"]);
+            const purchasedContext = SAREhub.Contexts.Purchased(sareWebApi, storage);
 
             purchasedContext();
 
