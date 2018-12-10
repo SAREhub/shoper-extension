@@ -1,4 +1,4 @@
-SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _storage, _contexts) {
+SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _cartStorage, _contexts) {
     function dispatch() {
         var context = getContext(_shop.pageType || '');
 
@@ -7,7 +7,7 @@ SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _storage, _cont
         }
 
         if (_shop.pageType !== 'shop_infopage') {
-            _contexts.Cart(_frontApi, _sareWebApi, _storage)();
+            _contexts.Cart(_frontApi, _sareWebApi, _cartStorage)();
         }
     }
 
@@ -33,7 +33,7 @@ SAREhub.ContextRunner = function (_shop, _frontApi, _sareWebApi, _storage, _cont
         }
 
         if (pageType === 'shop_basket_done') {
-            return _contexts.Purchased(_sareWebApi, _storage);
+            return _contexts.Purchased(_sareWebApi, _cartStorage);
         }
 
         return null;

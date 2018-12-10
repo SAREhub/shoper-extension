@@ -1,6 +1,6 @@
-SAREhub.Contexts.Purchased = function (_sareWebApi, _storage) {
+SAREhub.Contexts.Purchased = function (_sareWebApi, _cartStorage) {
     return function init() {
         _sareWebApi.cartPurchased();
-        _storage.clearAll();
+        _cartStorage.clear();
     }
 };
