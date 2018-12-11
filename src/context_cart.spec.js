@@ -14,7 +14,25 @@ describe('Context cart tests', () => {
         });
     });
 
-    it('added new product to cart', () => {
+    it ('added new product to cart which is a stock product', () => {
+        frontApi.getBasketInfo.and.callFake(function(callback) {
+            const currentBasketState = { products: [
+                    { id: 17, stock_id: 15, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1 }
+                ]};
+            callback(currentBasketState);
+        });
+
+        storage.get.and.returnValue([]);
+
+        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
+        cartContext();
+
+        expect(sareWebApi.cartAddedProduct).toHaveBeenCalledTimes(1);
+        expect(sareWebApi.cartAddedProduct).toHaveBeenCalledWith({ id: 'stock_15', name: 'test-product-1',
+            price: { gross: { final_float: 10.10 } }, url: null}, 1);
+    });
+
+    it('added new product to cart which isn\'t a stock product and hasn\'t variant', () => {
         storage.get.and.returnValue([]);
 
         const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
@@ -22,6 +40,24 @@ describe('Context cart tests', () => {
 
         expect(sareWebApi.cartAddedProduct).toHaveBeenCalledTimes(1);
         expect(sareWebApi.cartAddedProduct).toHaveBeenCalledWith({ id: 10, name: 'test-product-1',
+            price: { gross: { final_float: 10.10 } }, url: null}, 1);
+    });
+
+    it ('added new product to cart which isn\'t a stock product and has variant', () => {
+        frontApi.getBasketInfo.and.callFake(function(callback) {
+            const currentBasketState = { products: [
+                    { id: 17, stock_id: 10, product_id: 10, name: 'test-product-1', price_float: 10.10, quantity: 1, variant: 'product-variant' }
+                ]};
+            callback(currentBasketState);
+        });
+
+        storage.get.and.returnValue([]);
+
+        const cartContext = SAREhub.Contexts.Cart(frontApi, sareWebApi, storage);
+        cartContext();
+
+        expect(sareWebApi.cartAddedProduct).toHaveBeenCalledTimes(1);
+        expect(sareWebApi.cartAddedProduct).toHaveBeenCalledWith({ id: '10_product-variant', name: 'test-product-1',
             price: { gross: { final_float: 10.10 } }, url: null}, 1);
     });
 

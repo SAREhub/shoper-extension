@@ -1,6 +1,14 @@
 SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi, _cartStorage) {
     function itemId(item) {
-        return item.stock_id !== item.product_id ? 'stock_' + item.stock_id : item.product_id;
+        if (item.stock_id !== item.product_id) {
+            return 'stock_' + item.stock_id;
+        }
+
+        if (item.variant) {
+            return item.product_id + '_' + item.variant
+        }
+
+        return item.product_id;
     }
 
     function createSareWebProductFromCartItem(item) {
@@ -45,7 +53,6 @@ SAREhub.Contexts.Cart = function (_frontApi, _sareWebApi, _cartStorage) {
         }
     }
 
-    // TODO interval?
     return function init() {
         var savedCart = _cartStorage.get();
         _frontApi.getBasketInfo(function (currentCart) {
