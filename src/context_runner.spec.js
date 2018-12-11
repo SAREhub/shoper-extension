@@ -1,6 +1,6 @@
 describe('Context tests', () => {
     const frontApi = jasmine.createSpyObj('FrontApi', ['getProduct', 'getUser']);
-    const sareWebApi = jasmine.createSpyObj('FrontApi', ['productSeen', 'categorySeen']);
+    const sareWebApi = jasmine.createSpyObj('SareWebApi', ['productSeen', 'categorySeen']);
     const cartStorage = jasmine.createSpyObj('CartStorage', ['']);
     const contexts = jasmine.createSpyObj('Contexts', ['Category', 'Product', 'Purchased', 'Confirm',
         'DeliveryPayment', 'Registration', 'Cart']);
@@ -58,6 +58,15 @@ describe('Context tests', () => {
         runner.dispatch();
 
         expect(contexts.Purchased).toHaveBeenCalledWith(sareWebApi, cartStorage);
+    });
+
+    it('should execute cart context for each context except shop_infopage', () => {
+        const shop = {pageType: 'page_type'};
+
+        const runner = SAREhub.ContextRunner(shop, frontApi, sareWebApi, cartStorage, contexts);
+        runner.dispatch();
+
+        expect(contexts.Cart).toHaveBeenCalledWith(frontApi, sareWebApi, cartStorage);
     });
 
     it('should return false when context does not exist', () => {

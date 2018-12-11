@@ -1,4 +1,4 @@
-(function (_shop, _frontApi, _sareHub) {
+function SAREhubInit(_shop, _frontApi, _sareHub) {
     function initSAREweb() {
         (function (p) {
             window['sareX_params'] = p;
@@ -37,4 +37,6 @@
 
     initSAREweb();
     initContext();
-})(Shop, frontAPI, SAREhub);
+}
+
+SAREhubInit(Shop, frontAPI, SAREhub);
