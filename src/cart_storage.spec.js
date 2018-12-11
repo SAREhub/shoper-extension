@@ -17,7 +17,7 @@ describe('CartStorage tests', () => {
         });
 
         it('given null data then return empty array', () => {
-            window.sessionStorage.setItem('sarehub_cart', 'null'); // @TODO
+            window.sessionStorage.setItem('sarehub_cart', 'null');
 
             expect(storage.get()).toEqual([]);
         });
