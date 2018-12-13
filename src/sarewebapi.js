@@ -31,6 +31,18 @@ SAREhub.SareWebApi = function (_user) {
         };
         sareX_core.execute(sareWebLoadEvent, params);
     }
+    
+    function checkoutInitialized() {
+        var params = {
+            '_userId': _user.userId,
+            '_email': _user.email,
+            '_cartinitialized': {
+                'cart_id': ''
+            }
+        };
+
+        sareX_core.execute(sareWebCartEvent, params);
+    }
 
     function cartAddedProduct(productInfo, quantity) {
         var params = {
@@ -161,6 +173,7 @@ SAREhub.SareWebApi = function (_user) {
     return {
         categorySeen: categorySeen,
         productSeen: productSeen,
+        checkoutInitialized: checkoutInitialized,
         cartAddedProduct: cartAddedProduct,
         cartDeletedProduct: cartDeletedProduct,
         cartChangedQuantity: cartChangedQuantity,

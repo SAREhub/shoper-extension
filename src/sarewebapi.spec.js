@@ -54,6 +54,20 @@ describe('SAREweb API tests', () => {
         });
     });
 
+    it('should send request when checkout initialized', () => {
+        sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
+
+        SAREhub.SareWebApi(user).checkoutInitialized();
+
+        expect(sareX_core.execute).toHaveBeenCalledWith(10, {
+            '_userId': '10',
+            '_email': 'test@test.pl',
+            '_cartinitialized': {
+                'cart_id': '',
+            }
+        });
+    });
+
     it('should send request when product added to cart', () => {
         sareX_core = jasmine.createSpyObj('SareXCore', ['execute']);
 
